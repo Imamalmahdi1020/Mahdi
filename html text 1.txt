@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ইনফরমেশন ফর্ম</title>
+</head>
+<body>
+
+<h2>ইনফরমেশন ফর্ম</h2>
+
+<form action="submit.php" method="post">
+  <label for="fname">ফাস্ট নেইম:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="lname">লাস্ট নেইম:</label><br>
+  <input type="text" id="lname" name="lname"><br>
+  <label for="password">পাসওয়ার্ড:</label><br>
+  <input type="password" id="password" name="password"><br>
+  <label for="confirm_password">কনফার্ম পাসওয়ার্ড:</label><br>
+  <input type="password" id="confirm_password" name="confirm_password"><br>
+  <label for="email">ইমেইল:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="mobile">মোবাইল:</label><br>
+  <input type="text" id="mobile" name="mobile"><br>
+  <label for="gender">জেন্ডার:</label><br>
+  <select id="gender" name="gender">
+    <option value="male">পুরুষ</option>
+    <option value="female">মহিলা</option>
+    <option value="other">অন্যান্য</option>
+  </select><br>
+  <label for="religion">রিলিজিয়ন:</label><br>
+  <input type="text" id="religion" name="religion"><br>
+  <label for="blood_group">ব্লাড গ্রুপ:</label><br>
+  <input type="text" id="blood_group" name="blood_group"><br>
+  <label for="photo">ফটো (সর্বোচ্চ 60KB):</label><br>
+  <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+  <input type="submit" value="সাবমিট" onclick="sendEmail()">
+</form> 
+
+<script>
+function sendEmail() {
+  var fname = document.getElementById("fname").value;
+  var lname = document.getElementById("lname").value;
+  var password = document.getElementById("password").value;
+  var confirm_password = document.getElementById("confirm_password").value;
+  var email = document.getElementById("email").value;
+  var mobile = document.getElementById("mobile").value;
+  var gender = document.getElementById("gender").value;
+  var religion = document.getElementById("religion").value;
+  var blood_group = document.getElementById("blood_group").value;
+  
+  var body = "ফাস্ট নেইম: " + fname + "\n" +
+             "লাস্ট নেইম: " + lname + "\n" +
+             "পাসওয়ার্ড: " + password + "\n" +
+             "ইমেইল: " + email + "\n" +
+             "মোবাইল: " + mobile + "\n" +
+             "জেন্ডার: " + gender + "\n" +
+             "রিলিজিয়ন: " + religion + "\n" +
+             "ব্লাড গ্রুপ: " + blood_group;
+             
+  Email.send({
+    Host: "smtp.gmail.com",
+    Username: "yourusername@gmail.com",
+    Password: "yourpassword",
+    To: "mahadi102019@gmail.com",
+    From: "yourusername@gmail.com",
+    Subject: "ইনফরমেশন ফর্ম সাবমিট",
+    Body: body
+  }).then(
+    message => alert("তথ্য সফলভাবে পাঠানো হয়েছে!")
+  );
+}
+</script>
+
+</body>
+</html>
